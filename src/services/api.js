@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+const BASE_URL = 'http://localhost:5000';
 
 const api = axios.create({
   baseURL: BASE_URL,
@@ -42,7 +42,6 @@ api.interceptors.response.use(
           return api(originalRequest);
         } catch (refreshError) {
           // refresh ไม่สำเร็จ → logout
-          console.error('Refresh token failed:', refreshError);
           localStorage.removeItem('accessToken');
           localStorage.removeItem('refreshToken');
           localStorage.removeItem('user');
